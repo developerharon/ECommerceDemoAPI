@@ -1,4 +1,5 @@
-﻿using ECommerceDemoAPI.Entities;
+﻿using ECommerceDemoAPI.DTOs.Products;
+using ECommerceDemoAPI.Entities;
 using ECommerceDemoAPI.UseCases.Products.Commands;
 using ECommerceDemoAPI.UseCases.Products.Queries;
 using MediatR;
@@ -39,16 +40,18 @@ namespace ECommerceDemoAPI.Controllers.v1
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateProductCommand command)
+        public async Task<IActionResult> Post(CreateProductDTO dto)
         {
+            var command = new CreateProductCommand(dto);
             return Ok(await _mediator.Send(command));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, UpdateProductCommand command)
+        public async Task<IActionResult> Put(Guid id, UpdateProductDTO dto)
         {
-            if (id != command.Id)
+            if (id != dto.Id)
                 return BadRequest();
+            var command = new UpdateProductCommand(id, dto);
             return Ok(await _mediator.Send(command));
         }
 

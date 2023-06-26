@@ -1,24 +1,29 @@
-﻿using ECommerceDemoAPI.Entities;
+﻿using AutoMapper;
+using ECommerceDemoAPI.DTOs.Products;
+using ECommerceDemoAPI.Extensions;
 using ECommerceDemoAPI.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceDemoAPI.UseCases.Products.Queries
 {
-    public class GetAllProductsQuery : IRequest<IEnumerable<Product>?>
+    public class GetAllProductsQuery : IRequest<IEnumerable<GetProductDTO>?>
     {
-        public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<Product>?>
+        public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<GetProductDTO>?>
         {
             private readonly IApplicationDBContext _context;
+            private readonly IMapper _mapper;
 
-            public GetAllProductsQueryHandler(IApplicationDBContext context)
+            public GetAllProductsQueryHandler(IApplicationDBContext context, IMapper mapper)
             {
                 _context = context;
+                _mapper = mapper;
             }
 
-            public async Task<IEnumerable<Product>?> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<GetProductDTO>?> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Products.ToListAsync();
+                var products = await _context.Products.ToListAsync();
+                return products.MapProductListToGetProductDTOList(_mapper);
             }
         }
     }

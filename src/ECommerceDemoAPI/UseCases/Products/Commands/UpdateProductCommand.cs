@@ -1,4 +1,7 @@
-﻿using ECommerceDemoAPI.Interfaces;
+﻿using AutoMapper;
+using ECommerceDemoAPI.DTOs.Products;
+using ECommerceDemoAPI.Entities;
+using ECommerceDemoAPI.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,31 +9,34 @@ namespace ECommerceDemoAPI.UseCases.Products.Commands
 {
     public class UpdateProductCommand : IRequest<Guid>
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
+        private readonly Guid _productId;
+        private readonly UpdateProductDTO _dto;
+
+        public UpdateProductCommand(Guid productId, UpdateProductDTO dto)
+        {
+            _productId = productId;
+            _dto = dto;
+        }
 
         public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Guid>
         {
             private readonly IApplicationDBContext _context;
+            private readonly IMapper _mapper;
 
-            public UpdateProductCommandHandler(IApplicationDBContext context)
+            public UpdateProductCommandHandler(IApplicationDBContext context, IMapper mapper)
             {
                 _context = context;
+                _mapper = mapper;
             }
 
             public async Task<Guid> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
             {
-                var product = await _context.Products.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+                var product = await _context.Products.Where(x => x.Id == request._productId).FirstOrDefaultAsync();
 
                 if (product == null)
                     return default;
 
-                product.Name = request.Name;
-                product.Price = request.Price;
-                product.Quantity = request.Quantity;
-                //_context.Products.Update(product);
+                _mapper.Map<UpdateProductDTO, Product>(request._dto, product);
                 await _context.SaveChangesAsync();
                 return product.Id;
             }

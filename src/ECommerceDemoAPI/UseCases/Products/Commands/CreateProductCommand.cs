@@ -1,4 +1,6 @@
-﻿using ECommerceDemoAPI.Entities;
+﻿using AutoMapper;
+using ECommerceDemoAPI.DTOs.Products;
+using ECommerceDemoAPI.Entities;
 using ECommerceDemoAPI.Interfaces;
 using MediatR;
 
@@ -6,29 +8,29 @@ namespace ECommerceDemoAPI.UseCases.Products.Commands
 {
     public class CreateProductCommand : IRequest<Guid>
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
+        private readonly CreateProductDTO _dto;
+
+        public CreateProductCommand(CreateProductDTO dto)
+        {
+            _dto = dto;
+        }
 
         public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
         {
             private readonly IApplicationDBContext _context;
+            private readonly IMapper _mapper;
 
-            public CreateProductCommandHandler(IApplicationDBContext context)
+            public CreateProductCommandHandler(IApplicationDBContext context, IMapper mapper)
             {
                 _context = context;
+                _mapper = mapper;
             }
 
             public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
             {
-                var product = new Product
-                {
-                    Name = request.Name,
-                    Price = request.Price,
-                    Quantity = request.Quantity,
-                    CreatedAt = DateTimeOffset.UtcNow,
-                    UpdatedAt = DateTimeOffset.UtcNow
-                };
+                var product = _mapper.Map<Product>(request._dto);
+                product.CreatedAt = DateTimeOffset.UtcNow;
+                product.UpdatedAt = DateTimeOffset.UtcNow;
 
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
