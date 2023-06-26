@@ -4,10 +4,11 @@ using ECommerceDemoAPI.UseCases.Products.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerceDemoAPI.Controllers
+namespace ECommerceDemoAPI.Controllers.v1
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -18,6 +18,13 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddTransient<IApplicationDBContext, ApplicationDBContext>();
 
+builder.Services.AddApiVersioning(x =>
+{
+    x.AssumeDefaultVersionWhenUnspecified = true;
+    x.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    x.ReportApiVersions = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
