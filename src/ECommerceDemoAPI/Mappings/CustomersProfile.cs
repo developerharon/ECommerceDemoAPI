@@ -10,6 +10,7 @@ namespace ECommerceDemoAPI.Mappings
         {
             CreateMap<Customer, GetCustomerDTO>();
             CreateMap<CreateCustomerDTO, Customer>();
+            CreateMap<UpdateCustomerDTO, Customer>();
         }
     }
 }

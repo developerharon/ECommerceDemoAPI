@@ -45,5 +45,15 @@ namespace ECommerceDemoAPI.Controllers.v1
             var customerId = await _mediator.Send(new CreateCustomerCommand(dto));
             return Ok(customerId);
         }
+
+        [HttpPut("{id}")]
+        public async  Task<IActionResult> Put(Guid id, UpdateCustomerDTO dto)
+        {
+            if (id != dto.Id)
+                return BadRequest();
+
+            var customerId = await _mediator.Send(new UpdateCustomerCommand(id, dto));
+            return Ok(customerId);
+        }
     }
 }
