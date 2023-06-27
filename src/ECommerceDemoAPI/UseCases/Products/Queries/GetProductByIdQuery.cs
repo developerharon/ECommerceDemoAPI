@@ -30,7 +30,7 @@ namespace ECommerceDemoAPI.UseCases.Products.Queries
             public async Task<GetProductDTO?> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
             {
                 var product = await _context.Products.Where(x => x.Id == request._productId).FirstOrDefaultAsync();
-                return product?.MapProductToGetProductDto(_mapper);
+                return product?.MapProductToGetProductDTO(_mapper);
             }
         }
     }
