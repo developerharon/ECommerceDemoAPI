@@ -14,7 +14,7 @@ A simple API that models an e-commerce system.
 
 ## Description
 
-The **ECommerceDemoAPI** is a side project I have been working on to solidify my understanding of databases, based on the knowledge I gained from the book [Book Title]. This project aims to showcase my practical application of database concepts and techniques learned from the book.
+The **ECommerceDemoAPI** is a side project I have been working on to solidify my understanding of databases, based on the knowledge I gained from the book [Practical Entity Framework Core 6](https://www.amazon.com/Practical-Entity-Framework-Core-Applications/dp/1484273001). This project aims to showcase my practical application of database concepts and techniques learned from the book.
 
 ## Features
 
