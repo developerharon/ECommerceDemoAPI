@@ -9,6 +9,7 @@ namespace ECommerceDemoAPI.Mappings
         public CustomersProfile()
         {
             CreateMap<Customer, GetCustomerDTO>();
+            CreateMap<CreateCustomerDTO, Customer>();
         }
     }
 }

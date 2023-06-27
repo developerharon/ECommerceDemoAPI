@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ECommerceDemoAPI.DTOs.Customers;
 using ECommerceDemoAPI.DTOs.Orders;
 using ECommerceDemoAPI.DTOs.Products;
 using ECommerceDemoAPI.Entities;
@@ -35,6 +36,21 @@ namespace ECommerceDemoAPI.Extensions
         public static GetOrderDTO MapOrderToGetOrderDTO(this Order order, IMapper mapper)
         {
             return mapper.Map<GetOrderDTO>(order);
+        }
+
+        public static IEnumerable<GetCustomerDTO> MapCustomerListToGetCustomerDTOList(this IEnumerable<Customer> customerList, IMapper mapper)
+        {
+            var result = new List<GetCustomerDTO>(customerList.Count());
+            foreach (var customer in customerList)
+            {
+                result.Add(MapCustomerToGetCustomerDTO(customer, mapper));
+            }
+            return result;
+        }
+
+        public static GetCustomerDTO MapCustomerToGetCustomerDTO(this Customer customer, IMapper mapper)
+        {
+            return mapper.Map<GetCustomerDTO>(customer);
         }
     }
 }

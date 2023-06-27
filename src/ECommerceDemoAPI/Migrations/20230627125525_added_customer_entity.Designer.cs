@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceDemoAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20230627123047_added_some_data_annotations")]
-    partial class added_some_data_annotations
+    [Migration("20230627125525_added_customer_entity")]
+    partial class added_customer_entity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,7 +54,7 @@ namespace ECommerceDemoAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("ECommerceDemoAPI.Entities.Order", b =>

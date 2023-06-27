@@ -18,19 +18,19 @@ namespace ECommerceDemoAPI.Migrations
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "Customer",
+                name: "Customers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
@@ -39,10 +39,10 @@ namespace ECommerceDemoAPI.Migrations
                 column: "CustomerId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Orders_Customer_CustomerId",
+                name: "FK_Orders_Customers_CustomerId",
                 table: "Orders",
                 column: "CustomerId",
-                principalTable: "Customer",
+                principalTable: "Customers",
                 principalColumn: "Id");
         }
 
@@ -50,11 +50,11 @@ namespace ECommerceDemoAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Orders_Customer_CustomerId",
+                name: "FK_Orders_Customers_CustomerId",
                 table: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Customer");
+                name: "Customers");
 
             migrationBuilder.DropIndex(
                 name: "IX_Orders_CustomerId",

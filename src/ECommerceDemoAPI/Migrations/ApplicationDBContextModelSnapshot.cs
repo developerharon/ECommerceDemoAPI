@@ -51,7 +51,7 @@ namespace ECommerceDemoAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("ECommerceDemoAPI.Entities.Order", b =>
