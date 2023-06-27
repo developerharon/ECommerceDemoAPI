@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ECommerceDemoAPI.DTOs.Products;
-using ECommerceDemoAPI.Entities;
 using ECommerceDemoAPI.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -36,7 +35,7 @@ namespace ECommerceDemoAPI.UseCases.Products.Commands
                 if (product == null)
                     return default;
 
-                _mapper.Map<UpdateProductDTO, Product>(request._dto, product);
+                _mapper.Map(request._dto, product);
                 await _context.SaveChangesAsync();
                 return product.Id;
             }

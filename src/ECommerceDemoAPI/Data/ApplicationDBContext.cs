@@ -12,6 +12,31 @@ namespace ECommerceDemoAPI.Data
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
+            var tracker = ChangeTracker;
+
+            foreach (var entry in tracker.Entries())
+            {
+                if (entry.Entity is BaseEntity)
+                {
+                    var referenceEntity = entry.Entity as BaseEntity;
+
+                    if (referenceEntity is null)
+                        continue;
+
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            referenceEntity.CreatedAt = DateTimeOffset.UtcNow;
+                            break;
+                        case EntityState.Deleted:
+                        case EntityState.Modified:
+                            referenceEntity.UpdatedAt = DateTimeOffset.UtcNow;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
             return base.SaveChangesAsync(cancellationToken);
         }
     }
