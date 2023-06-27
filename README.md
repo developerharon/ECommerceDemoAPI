@@ -18,9 +18,13 @@ The **ECommerceDemoAPI** is a side project I have been working on to solidify my
 
 ## Features
 
-- Create, read, update, and delete products
-- Create, read, update, and delete customers
-- Create, read, update, and delete orders
+- **Feature 1:** Database design: I have implemented a well-structured and normalized database schema based on the principles outlined in the book.
+- **Feature 2:** Data modeling: I have utilized various techniques and best practices to model the data effectively in the database.
+- **Feature 3:** CRUD operations: The project demonstrates the implementation of Create, Read, Update, and Delete operations on the database.
+- **Feature 4:** Query optimization: I have optimized the database queries by utilizing appropriate indexing and query tuning techniques, resulting in improved performance.
+- **Feature 5:** Data validation: The project incorporates robust data validation mechanisms to ensure data integrity and consistency.
+- **Feature 6:** Security measures: I have implemented security measures such as user authentication and authorization to protect the database from unauthorized access.
+
 ## Technologies Used
 
 - .NET 7
