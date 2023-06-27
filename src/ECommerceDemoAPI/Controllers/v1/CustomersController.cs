@@ -55,5 +55,13 @@ namespace ECommerceDemoAPI.Controllers.v1
             var customerId = await _mediator.Send(new UpdateCustomerCommand(id, dto));
             return Ok(customerId);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            // TODO: Do we soft delete?
+            var customerId = await _mediator.Send(new DeleteCustomerCommand(id));
+            return Ok(customerId);
+        }
     }
 }
