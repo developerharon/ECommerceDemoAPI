@@ -1,6 +1,6 @@
 # E-Commerce Demo API
 
-Brief description or overview of your side project.
+A simple API that models an e-commerce system.
 
 ## Table of Contents
 
