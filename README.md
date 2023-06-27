@@ -23,10 +23,9 @@ A more detailed description of your side project and its purpose. Mention how it
 - Create, read, update, and delete orders
 ## Technologies Used
 
-- .NET 7, ASP.NET Core
-  - C#
-  - MediatR, Automapper, EFCore
-  - MS SQL Server
+- .NET 7
+- MediatR, Automapper, EFCore
+- MS SQL Server
 
 ## Installation
 
