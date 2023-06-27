@@ -4,6 +4,7 @@ using ECommerceDemoAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceDemoAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230627084801_added_order_orderItems")]
+    partial class added_order_orderItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +39,7 @@ namespace ECommerceDemoAPI.Migrations
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset?>("ShippingDate")
                         .HasColumnType("datetimeoffset");

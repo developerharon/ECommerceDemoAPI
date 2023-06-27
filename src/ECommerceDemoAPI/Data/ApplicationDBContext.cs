@@ -7,6 +7,7 @@ namespace ECommerceDemoAPI.Data
     public class ApplicationDBContext : DbContext, IApplicationDBContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) { }
 
