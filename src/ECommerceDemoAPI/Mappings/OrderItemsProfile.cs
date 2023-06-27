@@ -9,6 +9,7 @@ namespace ECommerceDemoAPI.Mappings
         public OrderItemsProfile()
         {
             CreateMap<OrderItem, GetOrderItemDTO>();
+            CreateMap<CreateOrderItemDTO, OrderItem>();
         }
     }
 }

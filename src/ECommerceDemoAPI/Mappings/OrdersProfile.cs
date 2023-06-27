@@ -8,7 +8,9 @@ namespace ECommerceDemoAPI.Mappings
     {
         public OrdersProfile()
         {
-            CreateMap<Order, GetOrderDTO>();
+            CreateMap<Order, GetOrderDTO>()
+                .ForMember(x => x.OrderDate, opts => opts.MapFrom(y => y.CreatedAt));
+            CreateMap<CreateOrderDTO, Order>();
         }
     }
 }
