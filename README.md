@@ -18,14 +18,15 @@ A more detailed description of your side project and its purpose. Mention how it
 
 ## Features
 
-- List the key features or functionalities of your side project.
-
+- Create, read, update, and delete products
+- Create, read, update, and delete customers
+- Create, read, update, and delete orders
 ## Technologies Used
 
-- List the technologies and tools you've used to develop your side project. For example:
-  - Programming language(s)
-  - Libraries or frameworks
-  - Database management system(s)
+- .NET 7, ASP.NET Core
+  - C#
+  - MediatR, Automapper, EFCore
+  - MS SQL Server
 
 ## Installation
 
