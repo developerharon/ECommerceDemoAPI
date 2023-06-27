@@ -14,7 +14,7 @@ A simple API that models an e-commerce system.
 
 ## Description
 
-A more detailed description of your side project and its purpose. Mention how it relates to the knowledge you've been learning about databases from the book.
+The **ECommerceDemoAPI** is a side project I have been working on to solidify my understanding of databases, based on the knowledge I gained from the book [Book Title]. This project aims to showcase my practical application of database concepts and techniques learned from the book.
 
 ## Features
 
