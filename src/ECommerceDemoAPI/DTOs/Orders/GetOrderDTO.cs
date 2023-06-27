@@ -1,4 +1,5 @@
-﻿using ECommerceDemoAPI.DTOs.OrderItems;
+﻿using ECommerceDemoAPI.DTOs.Customers;
+using ECommerceDemoAPI.DTOs.OrderItems;
 using ECommerceDemoAPI.Entities;
 
 namespace ECommerceDemoAPI.DTOs.Orders
@@ -11,7 +12,7 @@ namespace ECommerceDemoAPI.DTOs.Orders
         public DateTimeOffset? DeliveryDate { get; set; }
         public string? Notes { get; set; }
         public decimal OrderTotal { get; set; }
-
-        public virtual List<GetOrderItemDTO> OrderItems { get; set; } = new List<GetOrderItemDTO>();
+        public List<GetOrderItemDTO> OrderItems { get; set; } = new List<GetOrderItemDTO>();
+        public GetCustomerDTO? Customer { get; set; }
     }
 }

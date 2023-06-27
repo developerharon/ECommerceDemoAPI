@@ -29,7 +29,12 @@ namespace ECommerceDemoAPI.UseCases.Orders.Queries
 
             public async Task<GetOrderDTO?> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
             {
-                var order = await _context.Orders.Where(x => x.Id == request._orderId).Include(x => x.OrderItems).ThenInclude(x => x.Product).FirstOrDefaultAsync();
+                var order = await _context.Orders
+                    .Where(x => x.Id == request._orderId)
+                    .Include(x => x.OrderItems)
+                        .ThenInclude(x => x.Product)
+                    .Include(x => x.Customer)
+                    .FirstOrDefaultAsync();
 
                 if (order == null)
                     return default;

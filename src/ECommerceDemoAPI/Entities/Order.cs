@@ -9,9 +9,12 @@ namespace ECommerceDemoAPI.Entities
         [StringLength(300)]
         public string Notes { get; set; }
 
+        // Foreign keys
+        public Guid? CustomerId { get; set; }
+
         // Navigation properties
         public virtual List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-
+        public virtual Customer Customer { get; set; }
 
         // Not saved to the database, helps with normalization
         public decimal OrderTotal => OrderItems.Sum(x => x.Quantity * x.Product.Price);
